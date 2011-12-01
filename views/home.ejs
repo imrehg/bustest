@@ -9,11 +9,14 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/scripts/spin.min.js"></script>
 
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<%= mapkey %>&sensor=false"></script>
+
     <script type="text/javascript">
+      var map;
+      var marker = new Array();
 
       // open a socket.io connection to the backend
       var socket = io.connect();
-
       socket.on('connect', function() {
         // identify this socket with our auth token
         socket.emit('auth', '<%= socket_id %>');
@@ -21,19 +24,52 @@
         socket.on('message', function(data) {
           <!-- $('#container').html(JSON.stringify(JSON.parse(data), null)); -->
           $('#container').html(JSON.stringify(JSON.parse(data), null)+'<br>'+$('#container').html());
+
+	  <!-- var text = '{"locations":[{"sampled_at":"2011-12-01 12:46:48.000+0800","longitude":121.53780364990234,"bus_id":3,"latitude":25.01876449584961}]}'; -->
+	  <!-- var text = '{"locations":[{"sampled_at":"2011-12-01 12:46:48.000+0800","longitude":15.53780364990234,"bus_id":3,"latitude":50.01876449584961}]}'; -->
+	  var text = data;
+
+	  var myData = JSON.parse(text);
+	  var locs = myData.locations;
+	  for (loc in locs) {
+	    var bus_id = locs[loc].bus_id;
+	    var time = locs[loc].sampled_at;
+	    var lat = locs[loc].latitude;
+	    var lon = locs[loc].longitude;
+            var myLatlng = new google.maps.LatLng(lat, lon);
+
+	    if (marker[bus_id]) {
+  	       marker[bus_id].setPosition(myLatlng);
+	    } else {
+ 	       marker[bus_id] = new google.maps.Marker({
+ 	         position: myLatlng,
+ 	         map: map,
+ 	         title:"Hello Bus #"+bus_id+"!"
+	         });
+ 	    };
+	    map.panTo(myLatlng);
+	  };
         });
       });
 
+      function initialize() {
+        var myOptions = {
+          zoom: 5,
+          center: new google.maps.LatLng(50, 10.5),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map_canvas'),
+            myOptions);
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-    <!--[if IE]>
-      <script>
-        var tags = ['header', 'section'];
-        while(tags.length)
-          document.createElement(tags.pop());
-      </script>
-    <![endif]-->
   </head>
-  <body>
+  <body onload=initialize()>
+
+  <h1>Latest update location (if any)</h1>
+  <div id="map_canvas" style="width:500px; height:500px"></div>
+
   <h1>Received data (latest on top)</h1>
   <div id="container"></div>
 

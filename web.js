@@ -17,7 +17,8 @@ app.get('/', function(request, response) {
 
     response.render('home.ejs', {
 	  layout: false,
-          socket_id: socket_id
+          socket_id: socket_id,
+          mapkey: process.env.GOOGLE_MAPS_KEY
         });
 
 });
