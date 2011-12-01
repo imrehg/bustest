@@ -2,8 +2,10 @@ require.paths.unshift(__dirname + '/lib');
 
 var express = require('express');
 var uuid = require('node-uuid');
+var connect = require('connect');
 
 var app = express.createServer(
+     connect.bodyParser(),
      express.logger(),
      express.static(__dirname + '/public')
      );
@@ -24,6 +26,12 @@ app.get('/test', function(request, response) {
   response.send('OK!');
   var randomnumber=Math.floor(Math.random()*11);
   socket.sockets.send(JSON.stringify({ my: 'data' , num: randomnumber}));
+});
+
+app.post('/location', function(request, response) {
+  var data = request.body;
+  socket.sockets.send(JSON.stringify(data));
+  response.send({result: 'okay'});
 });
 
 var port = process.env.PORT || 3000;
