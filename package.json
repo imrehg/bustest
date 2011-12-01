@@ -1,0 +1,11 @@
+{
+  "name":        "startupbus-api-test",
+  "version":     "0.0.1",
+  "description": "Test StartupBus location API endpoint",
+  "dependencies": {
+    "ejs": "0.4.3",
+    "express": "2.4.6",
+    "node-uuid": "1.2.0",
+    "socket.io": "0.8.7"
+  }
+}

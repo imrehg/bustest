@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="stylesheets/screen.css" media="screen">
+
+    <script src="/scripts/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/spin.min.js"></script>
+
+    <script type="text/javascript">
+
+      // open a socket.io connection to the backend
+      var socket = io.connect();
+
+      socket.on('connect', function() {
+        // identify this socket with our auth token
+        socket.emit('auth', '<%= socket_id %>');
+
+        socket.on('message', function(data) {
+          <!-- $('#container').html(JSON.stringify(JSON.parse(data), null)); -->
+          $('#container').html(JSON.stringify(JSON.parse(data), null)+'<br>'+$('#container').html());
+        });
+      });
+
+    </script>
+    <!--[if IE]>
+      <script>
+        var tags = ['header', 'section'];
+        while(tags.length)
+          document.createElement(tags.pop());
+      </script>
+    <![endif]-->
+  </head>
+  <body>
+  <h1>Received data (latest on top)</h1>
+  <div id="container"></div>
+
+  </body>
+</html>
