@@ -35,6 +35,17 @@ app.post('/location', function(request, response) {
   response.send({result: 'okay'});
 });
 
+app.get('/buses', function(request, response) {
+  var endpoint = "http://sbtest00.herokuapp.com/location";
+  var buses = [{"id": "101", "name": "Silicon Valley"},
+               {"id": "102", "name": "Miami"},
+               {"id": "103", "name": "Taipei"},
+               {"id": "XYZ", "name": "Testing bus"}
+              ];
+  var resp = {"endpoint": endpoint, "buses": buses};
+  response.send(resp);
+});
+
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log("Listening on " + port);
