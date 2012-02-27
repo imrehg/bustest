@@ -35,7 +35,7 @@ app.post('/location', function(request, response) {
   response.send({result: 'okay'});
 });
 
-app.get('/buses', function(request, response) {
+app.get('/logconf', function(request, response) {
   var endpoint = "http://sbtest00.herokuapp.com/location";
   var buses = [{"id": "101", "name": "Silicon Valley"},
                {"id": "102", "name": "Miami"},
