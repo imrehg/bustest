@@ -37,10 +37,10 @@ app.post('/location', function(request, response) {
 
 app.get('/logconf', function(request, response) {
   var endpoint = "http://sbtest00.herokuapp.com/location";
-  var buses = [{"id": "101", "name": "Silicon Valley"},
-               {"id": "102", "name": "Miami"},
-               {"id": "103", "name": "Taipei"},
-               {"id": "XYZ", "name": "Testing bus"}
+  var buses = [{"id": 101, "name": "Silicon Valley"},
+               {"id": 102, "name": "Miami"},
+               {"id": 103, "name": "Taipei"},
+               {"id": 5000, "name": "Testing bus"}
               ];
   var resp = {"endpoint": endpoint, "buses": buses};
   response.send(resp);
