@@ -30,7 +30,8 @@
 	  var text = data;
 
 	  var myData = JSON.parse(text);
-	  var locs = myData.locations;
+	  var dataData = myData.data;
+	  var locs = dataData.locations;
 	  for (loc in locs) {
 	    var bus_id = locs[loc].bus_id;
 	    var time = locs[loc].sampled_at;
