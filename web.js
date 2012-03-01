@@ -30,8 +30,10 @@ app.get('/test', function(request, response) {
 });
 
 app.post('/location', function(request, response) {
+  var url_parts = url.parse(request.url, true);
+  var query = url_parts.query;
   var data = request.body;
-  socket.sockets.send(JSON.stringify(data));
+  socket.sockets.send("Data:"+JSON.stringify(data)+" Params:"+JSON.stringify(query));
   response.send({result: 'okay'});
 });
 
