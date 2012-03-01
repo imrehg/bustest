@@ -3,6 +3,7 @@ require.paths.unshift(__dirname + '/lib');
 var express = require('express');
 var uuid = require('node-uuid');
 var connect = require('connect');
+var url = require('url');
 
 var app = express.createServer(
      connect.bodyParser(),
@@ -33,7 +34,8 @@ app.post('/location', function(request, response) {
   var url_parts = url.parse(request.url, true);
   var query = url_parts.query;
   var data = request.body;
-  socket.sockets.send("Data:"+JSON.stringify(data)+" Params:"+JSON.stringify(query));
+  var retdata = {"data": data, "URLparams": query};
+  socket.sockets.send(JSON.stringify(retdata));
   response.send({result: 'okay'});
 });
 
