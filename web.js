@@ -46,8 +46,7 @@ app.get('/logconf', function(request, response) {
                {"id": 103, "name": "Taipei"},
                {"id": 5000, "name": "Testing bus"}
               ];
-  var oauth = uuid.v1();
-  var resp = {"endpoint": endpoint, "buses": buses, "oauth_token": oauth};
+  var resp = {"endpoint": endpoint, "buses": buses};
   response.send(resp);
 });
 
