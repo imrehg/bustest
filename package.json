@@ -2,6 +2,17 @@
   "name": "startupbus-api",
   "version": "0.1.0",
   "description": "StartupBus location API endpoint",
+  "bugs": {
+    "url": "https://github.com/imrehg/bustest/issues"
+  },
+  "author": {
+    "name": "Gergely Imreh",
+    "email": "gergely@imreh.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imrehg/bustest.git"
+  },
   "dependencies": {
     "ejs": "~0.8.4",
     "express": "~3.4.1",
@@ -9,5 +20,9 @@
     "node-uuid": "~1.4.1",
     "socket.io": "~0.9.16",
     "ejs-locals": "~1.0.2"
+  }
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
   }
 }
