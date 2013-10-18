@@ -7,6 +7,7 @@ var express = require('express')
   , _ = require('underscore')
 ;
 
+// Bus settings, modify this if need other kind
 var settings = {};
 settings.endpoint = "http://sbtest00.herokuapp.com/location";
 settings.buses = [{"id": 201, "name": "France"},
