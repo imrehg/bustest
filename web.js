@@ -57,6 +57,7 @@ app.use(express.errorHandler());
 
 var socket = io;
 
+// Show frontend with basic map and incoming data
 app.get('/', function(request, response) {
     var socket_id = uuid();
 
@@ -75,6 +76,7 @@ app.get('/test', function(request, response) {
   socket.sockets.send(JSON.stringify({ my: 'data' , num: randomnumber}));
 });
 
+// Handle incoming data
 app.post('/location', function(request, response) {
     var url_parts = url.parse(request.url, true);
     var query = url_parts.query;
@@ -89,6 +91,7 @@ app.post('/location', function(request, response) {
     response.send({result: 'okay'});
 });
 
+// Distribute logging configuration
 app.get('/logconf', function(request, response) {
   response.send(settings.total);
 });
