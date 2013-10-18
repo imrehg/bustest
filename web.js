@@ -76,12 +76,19 @@ app.get('/test', function(request, response) {
 });
 
 app.post('/location', function(request, response) {
-  var url_parts = url.parse(request.url, true);
-  var query = url_parts.query;
-  var data = request.body;
-  var retdata = {"data": data, "URLparams": query};
-  socket.sockets.send(JSON.stringify(retdata));
-  response.send({result: 'okay'});
+    var url_parts = url.parse(request.url, true);
+    var query = url_parts.query;
+    var data = request.body;
+    // var retdata = {"data": data, "URLparams": query};
+    var retdata = {"data": data};
+    socket.sockets.send(JSON.stringify(retdata));
+
+    var thistoken = query.oauth_token;
+    var goodtoken = _.contains(tokens, thistoken);
+
+    var retdata = {"data": data, "goodtoken": goodtoken};
+    socket.sockets.send(JSON.stringify(retdata));
+    response.send({result: 'okay'});
 });
 
 app.get('/logconf', function(request, response) {
