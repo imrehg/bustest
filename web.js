@@ -21,8 +21,7 @@ settings.buses = [{"id": 201, "name": "France"},
 settings.total = {"endpoint": settings.endpoint, "buses": settings.buses};
 
 // Other settings
-var tracking_db = process.env.MYSQL_DB
-  , tracking_table = process.env.MYSQL_TABLE
+var tracking_table = process.env.MYSQL_TABLE
   , tokens = process.env.TOKENS.split(",")
 ;
 
@@ -30,7 +29,8 @@ var tracking_db = process.env.MYSQL_DB
 var connection = mysql.createConnection({
   host     : process.env.MYSQL_HOST,
   user     : process.env.MYSQL_USER,
-  password : process.env.MYSQL_PASS
+  password : process.env.MYSQL_PASS,
+  database : process.env.MYSQL_DB
 });
 
 var app = express()
