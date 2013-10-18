@@ -35,8 +35,11 @@ var connection = mysql.createConnection({
 });
 connection.connect(function(err) {
   if (err) {
+      console.log(err);
       console.log("No connection, data won't be saved!");
-  };
+  } else {
+      console.log("Connected to backend database.");
+  }
 });
 
 
