@@ -32,6 +32,12 @@ var connection = mysql.createConnection({
   password : process.env.MYSQL_PASS,
   database : process.env.MYSQL_DB
 });
+connection.connect(function(err) {
+  if (err) {
+      console.log("No connection, data won't be saved!");
+  };
+});
+
 
 var app = express()
   , http = require('http')
