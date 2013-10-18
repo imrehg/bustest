@@ -111,10 +111,10 @@ var savelog = function(data) {
 		 longitude: parseFloat(loc.longitude),
 		};
 	console.log(post);
-	// var query = connection.query('INSERT INTO '+tracking_table+' SET ?', post, function(err, result) {
-	//     // Neat!
+	var query = connection.query('INSERT INTO '+tracking_table+' SET ?', post, function(err, result) {
+	    // Done!
 	});
-	// console.log(query.sql);
+	console.log(query.sql);
     }
 };
 
