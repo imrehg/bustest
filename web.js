@@ -49,6 +49,11 @@ var app = express()
   , io = require('socket.io').listen(server)
 ;
 
+// Can't do Websockets on Heroku, and failing with that?
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
 
 app.engine('ejs', engine);
 app.set('views',__dirname + '/views');
