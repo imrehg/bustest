@@ -92,10 +92,31 @@ app.post('/location', function(request, response) {
     var thistoken = query.oauth_token;
     var goodtoken = _.contains(tokens, thistoken);
 
+    if (goodtoken) {
+	savelog(data);
+    };
+
     var retdata = {"data": data, "goodtoken": goodtoken};
     socket.sockets.send(JSON.stringify(retdata));
     response.send({result: 'okay'});
 });
+
+var savelog = function(data) {
+    var locations = data.locations;
+    for (var i = 0; i < locations.length; i++) {
+	loc = locations[i]
+	post  = {bus_id: loc.bus_id,
+		 timestamp: moment(loc.sampled_at).unix(),
+		 latitude: parseFloat(loc.latitude),
+		 longitude: parseFloat(loc.longitude),
+		};
+	console.log(post);
+	// var query = connection.query('INSERT INTO '+tracking_table+' SET ?', post, function(err, result) {
+	//     // Neat!
+	});
+	// console.log(query.sql);
+    }
+};
 
 // Distribute logging configuration
 app.get('/logconf', function(request, response) {
