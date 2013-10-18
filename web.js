@@ -5,6 +5,17 @@ var express = require('express')
   , engine = require('ejs-locals')
 ;
 
+var settings = {};
+settings.endpoint = "http://sbtest00.herokuapp.com/location";
+settings.buses = [{"id": 201, "name": "France"},
+		  {"id": 202, "name": "Germany"},
+		  {"id": 203, "name": "Italy"},
+		  {"id": 204, "name": "Netherlands"},
+		  {"id": 205, "name": "Spain"},
+		  {"id": 206, "name": "United Kingdom"},
+		  {"id": 999, "name": "Taiwan"}
+		 ];
+settings.total = {"endpoint": settings.endpoint, "buses": settings.buses};
 
 var app = express()
   , http = require('http')
@@ -57,14 +68,7 @@ app.post('/location', function(request, response) {
 });
 
 app.get('/logconf', function(request, response) {
-  var endpoint = "http://sbtest00.herokuapp.com/location";
-  var buses = [{"id": 101, "name": "Silicon Valley"},
-               {"id": 102, "name": "Miami"},
-               {"id": 103, "name": "Taipei"},
-               {"id": 5000, "name": "Testing bus"}
-              ];
-  var resp = {"endpoint": endpoint, "buses": buses};
-  response.send(resp);
+  response.send(settings.total);
 });
 
 var port = process.env.PORT || 3000;
