@@ -80,8 +80,6 @@ app.post('/location', function(request, response) {
     var query = url_parts.query;
     var data = request.body;
     // var retdata = {"data": data, "URLparams": query};
-    var retdata = {"data": data};
-    socket.sockets.send(JSON.stringify(retdata));
 
     var thistoken = query.oauth_token;
     var goodtoken = _.contains(tokens, thistoken);
