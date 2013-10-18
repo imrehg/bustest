@@ -52,6 +52,7 @@ app.get('/', function(request, response) {
 
 });
 
+//Test socket.io by sending a random integer to the front interface
 app.get('/test', function(request, response) {
   response.send('OK!');
   var randomnumber=Math.floor(Math.random()*11);
