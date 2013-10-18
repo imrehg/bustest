@@ -1,17 +1,34 @@
-require.paths.unshift(__dirname + '/lib');
+var express = require('express')
+  , uuid = require('node-uuid')
+  , connect = require('connect')
+  , url = require('url')
+  , engine = require('ejs-locals')
+;
 
-var express = require('express');
-var uuid = require('node-uuid');
-var connect = require('connect');
-var url = require('url');
 
-var app = express.createServer(
-     connect.bodyParser(),
-     express.logger(),
-     express.static(__dirname + '/public')
-     );
-var io = require('socket.io');
-var socket = io.listen(app);
+var app = express()
+  , http = require('http')
+  , server = http.createServer(app)
+  , io = require('socket.io').listen(server)
+;
+
+
+app.engine('ejs', engine);
+app.set('views',__dirname + '/views');
+app.set('view engine', 'ejs');
+app.locals({
+  _layoutFile: false
+});
+
+app.use(express.logger());
+app.use(express.static('public'));
+app.use(express.bodyParser());
+app.use(express.cookieParser());
+app.use(express.session({secret: process.env.SESSION_SECRET || 'akjsfkjs345$%VFDVGT%'}));
+app.use(express.errorHandler());
+
+
+var socket = io;
 
 app.get('/', function(request, response) {
     var socket_id = uuid();
@@ -51,6 +68,6 @@ app.get('/logconf', function(request, response) {
 });
 
 var port = process.env.PORT || 3000;
-app.listen(port, function() {
+server.listen(port, function() {
   console.log("Listening on " + port);
 });
