@@ -5,6 +5,7 @@ var express = require('express')
   , engine = require('ejs-locals')
   , mysql = require('mysql')
   , _ = require('underscore')
+  , moment = require('moment')
 ;
 
 // Bus settings, modify this if need other kind
