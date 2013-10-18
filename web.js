@@ -3,6 +3,8 @@ var express = require('express')
   , connect = require('connect')
   , url = require('url')
   , engine = require('ejs-locals')
+  , mysql = require('mysql')
+  , _ = require('underscore')
 ;
 
 var settings = {};

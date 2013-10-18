@@ -19,7 +19,9 @@
     "connect": "~2.9.1",
     "node-uuid": "~1.4.1",
     "socket.io": "~0.9.16",
-    "ejs-locals": "~1.0.2"
+    "ejs-locals": "~1.0.2",
+    "mysql": "~2.0.0-alpha9",
+    "underscore": "~1.5.2"
   },
   "engines": {
     "node": "0.10.x",
