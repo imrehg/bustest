@@ -146,6 +146,9 @@ var savelog = function(data) {
 		};
 	console.log(post);
 	var query = connection.query('INSERT INTO '+tracking_table+' SET ?', post, function(err, result) {
+	    if (err) {
+		console.log("Log insert error: "+err);
+	    }
 	    // Done!
 	});
 	console.log(query.sql);
