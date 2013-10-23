@@ -71,7 +71,7 @@ handleDisconnect();
 var app = express()
   , http = require('http')
   , server = http.createServer(app)
-  , io = require('socket.io').listen(server)
+  , io = require('socket.io').listen(server, { log: false })
 ;
 
 // Can't do Websockets on Heroku, and failing with that?
