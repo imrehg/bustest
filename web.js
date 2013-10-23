@@ -76,7 +76,7 @@ var app = express()
 
 // Can't do Websockets on Heroku, and failing with that?
 io.configure(function () {
-  io.set("transports", ["websocket", "xhr-polling"]);
+  io.set("transports", ["xhr-polling"]);
   io.set("polling duration", 10);
 });
 
