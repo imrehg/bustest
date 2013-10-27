@@ -141,7 +141,7 @@ var savelog = function(data) {
 	post  = {bus_id: loc.bus_id,
 		 timestamp: moment(loc.sampled_at).unix(),
 		 latitude: parseFloat(loc.latitude),
-		 longitude: parseFloat(loc.longitude),
+		 longitude: parseFloat(loc.longitude)
 		};
 	console.log(post);
 	var query = connection.query('INSERT INTO '+tracking_table+' SET ?', post, function(err, result) {
