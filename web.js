@@ -16,8 +16,7 @@ settings.buses = [{"id": 201, "name": "Paris"},
 		  {"id": 203, "name": "Roma"},
 		  {"id": 204, "name": "Amsterdam"},
 		  {"id": 205, "name": "Barcelona"},
-		  {"id": 206, "name": "London"},
-		  {"id": 999, "name": "Taipei"}
+		  {"id": 206, "name": "London"}
 		 ];
 settings.total = {"endpoint": settings.endpoint, "buses": settings.buses};
 
