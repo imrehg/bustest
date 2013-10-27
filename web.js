@@ -67,6 +67,18 @@ function handleDisconnect() {
 }
 handleDisconnect();
 
+function dbKeepAlive() {
+    connection.query('SELECT * FROM '+tracking_table+' LIMIT 1', function(err, result) {
+        if (err) {
+	   console.log("Keepalive query error: "+err);
+        } else {
+           console.log("Keepalive successful");
+	}
+    });
+    setTimeout(dbKeepAlive, 45000);
+}
+dbKeepAlive();
+
 var app = express()
   , http = require('http')
   , server = http.createServer(app)
