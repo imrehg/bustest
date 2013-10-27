@@ -137,7 +137,7 @@ app.post('/location', function(request, response) {
 var savelog = function(data) {
     var locations = data.locations;
     for (var i = 0; i < locations.length; i++) {
-	loc = locations[i]
+	loc = locations[i];
 	post  = {bus_id: loc.bus_id,
 		 timestamp: moment(loc.sampled_at).unix(),
 		 latitude: parseFloat(loc.latitude),
