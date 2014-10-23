@@ -17,7 +17,8 @@ settings.buses = [{"id": 1, "name": "France"},
 		  {"id": 4, "name": "Estonia"},
 		  {"id": 5, "name": "Germany"},
 		  {"id": 6, "name": "UK 1"},
-		  {"id": 7, "name": "UK 2"}
+		  {"id": 7, "name": "UK 2"},
+		  {"id": 999, "name": "Testing"}
 		 ];
 settings.total = {"endpoint": settings.endpoint, "buses": settings.buses};
 
