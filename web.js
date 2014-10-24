@@ -11,13 +11,13 @@ var express = require('express')
 // Bus settings, modify this if need other kind
 var settings = {};
 settings.endpoint = "http://sbtest00.herokuapp.com/location";
-settings.buses = [{"id": 1, "name": "France"},
-		  {"id": 2, "name": "Italy"},
-		  {"id": 3, "name": "Greece"},
-		  {"id": 4, "name": "Estonia"},
-		  {"id": 5, "name": "Germany"},
-		  {"id": 6, "name": "UK 1"},
-		  {"id": 7, "name": "UK 2"},
+settings.buses = [{"id": 201, "name": "France"},
+		  {"id": 202, "name": "Italy"},
+		  {"id": 203, "name": "Greece"},
+		  {"id": 204, "name": "Estonia"},
+		  {"id": 205, "name": "Germany"},
+		  {"id": 206, "name": "UK 1"},
+		  {"id": 207, "name": "UK 2"},
 		  {"id": 999, "name": "Testing"}
 		 ];
 settings.total = {"endpoint": settings.endpoint, "buses": settings.buses};
