@@ -13,6 +13,7 @@
     "type": "git",
     "url": "https://github.com/imrehg/bustest.git"
   },
+  "license": "MIT",
   "dependencies": {
     "ejs": "~0.8.4",
     "express": "~3.4.1",
