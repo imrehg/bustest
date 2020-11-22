@@ -1,6 +1,6 @@
 {
   "name": "startupbus-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "StartupBus location API endpoint",
   "bugs": {
     "url": "https://github.com/imrehg/bustest/issues"
@@ -32,7 +32,7 @@
     "underscore": "~1.5.2"
   },
   "engines": {
-    "node": "0.12.x",
-    "npm": "2.x.x"
+    "node": "15.x.x",
+    "npm": "6.x.x"
   }
 }
