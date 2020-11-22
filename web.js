@@ -100,7 +100,11 @@ app.use(morgan('combined'));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(cookieParser());
-var sess = {secret: process.env.SESSION_SECRET || 'akjsfkjs345$%VFDVGT%'}
+var sess = {
+  secret: process.env.SESSION_SECRET || 'akjsfkjs345$%VFDVGT%',
+  resave: true,
+  saveUninitialized: true
+}
 app.use(session(sess));
 if (process.env.NODE_ENV === 'development') {
   // only use in development
