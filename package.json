@@ -15,15 +15,21 @@
   },
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect": "^3.7.0",
+    "cookie-parser": "^1.4.5",
     "ejs": "~0.8.4",
-    "express": "~3.4.1",
-    "connect": "~2.9.1",
-    "node-uuid": "~1.4.1",
-    "socket.io": "~0.9.16",
     "ejs-locals": "~1.0.2",
-    "mysql": "~2.0.0-alpha9",
-    "underscore": "~1.5.2",
-    "moment": "~2.3.1"
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "foreman": "^3.0.1",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "node-uuid": "~1.4.1",
+    "socket.io": "^3.0.3",
+    "underscore": "~1.5.2"
   },
   "engines": {
     "node": "0.12.x",

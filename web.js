@@ -6,6 +6,11 @@ var express = require('express')
   , mysql = require('mysql')
   , _ = require('underscore')
   , moment = require('moment')
+  , morgan = require('morgan')
+  , bodyParser = require('body-parser')
+  , cookieParser = require('cookie-parser')
+  , session = require('express-session')
+  , errorhandler = require('errorhandler')
 ;
 
 // Bus settings, modify this if need other kind
@@ -82,28 +87,25 @@ dbKeepAlive();
 var app = express()
   , http = require('http')
   , server = http.createServer(app)
-  , io = require('socket.io').listen(server, { log: false })
+  , io = require('socket.io', {transports: ["polling"]})(server)
 ;
 
-// Can't do Websockets on Heroku, and failing with that?
-io.configure(function () {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
-});
 
 app.engine('ejs', engine);
 app.set('views',__dirname + '/views');
 app.set('view engine', 'ejs');
-app.locals({
-  _layoutFile: false
-});
+app.locals._layoutFile = false;
 
-app.use(express.logger());
+app.use(morgan('combined'));
 app.use(express.static('public'));
-app.use(express.bodyParser());
-app.use(express.cookieParser());
-app.use(express.session({secret: process.env.SESSION_SECRET || 'akjsfkjs345$%VFDVGT%'}));
-app.use(express.errorHandler());
+app.use(bodyParser.json());
+app.use(cookieParser());
+var sess = {secret: process.env.SESSION_SECRET || 'akjsfkjs345$%VFDVGT%'}
+app.use(session(sess));
+if (process.env.NODE_ENV === 'development') {
+  // only use in development
+  app.use(errorhandler())
+}
 
 
 var socket = io;
